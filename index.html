@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chonky Bois - OH LAWD THEY TAPPIN'</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #fff;
+      --text-dark: #000;
+      --accent: #FF2D55;
+      --yellow: #FFDD00;
+      --cyan: #00FFFF;
+      --green: #39FF14;
+      --radius: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background: #000;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ========== RAINBOW GRADIENT BACKGROUND ========== */
+    .rainbow-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(
+        135deg,
+        #ff6b6b 0%,
+        #feca57 14%,
+        #48dbfb 28%,
+        #ff9ff3 42%,
+        #54a0ff 56%,
+        #5f27cd 70%,
+        #ff6b6b 84%,
+        #feca57 100%
+      );
+      background-size: 400% 400%;
+      animation: rainbowShift 12s ease infinite;
+      z-index: 0;
+    }
+
+    @keyframes rainbowShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* ========== CAT GRID BACKGROUND ========== */
+    .cat-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      gap: 0;
+      z-index: 1;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .cat-cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cat-cell img {
+      width: 85%;
+      height: 85%;
+      object-fit: contain;
+      transition: transform 0.1s ease-out;
+    }
+
+    .cat-cell.tapping img {
+      animation: catTap 0.2s ease-out;
+    }
+
+    .cat-cell.bonking img {
+      animation: catBonk 0.3s ease-out;
+    }
+
+    @keyframes catTap {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.1); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    @keyframes catBonk {
+      0% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.2) rotate(-10deg); }
+      50% { transform: scale(1.15) rotate(10deg); }
+      75% { transform: scale(1.1) rotate(-5deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    /* ========== CONTENT ========== */
+    .content {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ========== TEXT SHADOWS FOR READABILITY ========== */
+    .pop-text {
+      text-shadow:
+        4px 4px 0 #000,
+        -2px -2px 0 #000,
+        2px -2px 0 #000,
+        -2px 2px 0 #000,
+        0 4px 0 #000;
+    }
+
+    .pop-text-sm {
+      text-shadow:
+        2px 2px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: #000;
+      color: var(--yellow);
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: float 3s ease-in-out infinite;
+      border: 3px solid var(--yellow);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-15px) rotate(2deg); }
+    }
+
+    .logo {
+      font-size: clamp(5rem, 18vw, 14rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.85;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+
+    .tagline {
+      font-size: clamp(1.3rem, 4vw, 2.2rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      line-height: 1.3;
+      color: #fff;
+    }
+
+    .tagline span {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75em;
+      margin-top: 0.75rem;
+      color: var(--cyan);
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1.3rem 3.5rem;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #000;
+      background: var(--yellow);
+      border: 4px solid #000;
+      border-radius: 100px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-4px) rotate(-2deg);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+    .download-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.3rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      background: transparent;
+      border: 4px solid #fff;
+      border-radius: 100px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-secondary:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-4px) rotate(2deg);
+    }
+
+    /* ========== BONK COUNTER ========== */
+    .bonk-counter {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: #000;
+      border: 3px solid var(--accent);
+      border-radius: 16px;
+      padding: 1rem 1.5rem;
+      z-index: 100;
+      text-align: center;
+    }
+
+    .bonk-counter .count {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .bonk-counter .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #fff;
+      opacity: 0.8;
+    }
+
+    /* ========== TYPE CTA SECTION ========== */
+    .type-cta {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .type-prompt {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--green);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    .type-hint {
+      font-family: 'Space Mono', monospace;
+      font-size: 1rem;
+      color: #fff;
+      margin-top: 1rem;
+      opacity: 0.8;
+    }
+
+    .keyboard-visual {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .key {
+      width: 50px;
+      height: 50px;
+      background: rgba(0,0,0,0.7);
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      transition: all 0.1s ease;
+    }
+
+    .key.active {
+      background: var(--yellow);
+      color: #000;
+      border-color: var(--yellow);
+      transform: translateY(-4px);
+    }
+
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.3rem;
+      font-family: 'Space Mono', monospace;
+      color: var(--yellow);
+      margin-bottom: 2rem;
+    }
+
+    /* ========== RANDOM PICKER ========== */
+    .picker-section {
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .picker-display {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 2rem;
+      background: rgba(0,0,0,0.7);
+      border: 4px solid rgba(255,255,255,0.3);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .picker-display.has-result {
+      border-color: var(--green);
+      background: rgba(57, 255, 20, 0.15);
+    }
+
+    .picker-display img {
+      width: 80%;
+      height: 80%;
+      object-fit: contain;
+    }
+
+    .picker-display .question {
+      font-size: 4rem;
+      opacity: 0.5;
+    }
+
+    .picker-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem 3rem;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #000;
+      background: var(--green);
+      border: 4px solid #000;
+      border-radius: 100px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .picker-btn:hover {
+      transform: translateY(-4px) rotate(2deg);
+      box-shadow: 8px 8px 0 #000;
+    }
+
+    .picker-btn.spinning {
+      animation: shake 0.3s ease infinite;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: rotate(-3deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    .picker-result {
+      margin-top: 2rem;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--yellow);
+      min-height: 2.5rem;
+    }
+
+    /* ========== REVIEWS ========== */
+    .reviews-section {
+      padding: 6rem 2rem;
+    }
+
+    .reviews-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .review-card {
+      background: rgba(0,0,0,0.7);
+      border: 3px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 320px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-8px) rotate(-2deg);
+      border-color: var(--yellow);
+    }
+
+    .review-card:nth-child(2):hover {
+      transform: translateY(-8px) rotate(2deg);
+    }
+
+    .review-quote {
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .review-source {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--cyan);
+    }
+
+    .review-stars {
+      color: var(--yellow);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ========== FINAL CTA ========== */
+    .cta-section {
+      padding: 8rem 2rem;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.9;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .cta-section p {
+      font-size: 1.5rem;
+      font-family: 'Space Mono', monospace;
+      color: var(--green);
+      margin-bottom: 3rem;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    footer a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 700;
+      margin: 0 1rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .bonk-counter {
+        top: auto;
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .bonk-counter .count {
+        font-size: 1.5rem;
+      }
+
+      .picker-display {
+        width: 150px;
+        height: 150px;
+      }
+
+      .reviews-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .keyboard-visual {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cta-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .download-btn, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="rainbow-bg"></div>
+  <div class="cat-grid" id="catGrid"></div>
+
+  <!-- Bonk Counter -->
+  <div class="bonk-counter">
+    <div class="count" id="bonkCount">0</div>
+    <div class="label">Bonks</div>
+  </div>
+
+  <main class="content">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-badge">Your menu bar's new best friend</div>
+      <h1 class="logo pop-text">Chonky<br>Bois</h1>
+      <p class="tagline pop-text-sm">
+        They sit. They tap. They bring you joy.
+        <span>// oh lawd, they tappin'</span>
+      </p>
+      <div class="cta-group">
+        <a href="chonk.dmg" class="download-btn" download>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          Get Chonky
+        </a>
+        <a href="#picker" class="btn-secondary">
+          Pick a boi
+        </a>
+      </div>
+    </section>
+
+    <!-- Type CTA -->
+    <section class="type-cta">
+      <div class="type-prompt pop-text" id="typePrompt">👆 TYPE SOMETHING!</div>
+      <div class="type-hint">watch the cats go brrr</div>
+      <div class="keyboard-visual" id="keyboard">
+        <div class="key">A</div>
+        <div class="key">S</div>
+        <div class="key">D</div>
+        <div class="key">F</div>
+        <div class="key">G</div>
+        <div class="key">H</div>
+        <div class="key">J</div>
+        <div class="key">K</div>
+        <div class="key">L</div>
+      </div>
+    </section>
+
+    <!-- Random Picker -->
+    <section class="picker-section" id="picker">
+      <h2 class="section-title pop-text">Can't Decide?</h2>
+      <p class="section-subtitle pop-text-sm">35 flavors of chonk. spin for yours.</p>
+      <div class="picker-display" id="pickerDisplay">
+        <span class="question">?</span>
+      </div>
+      <button class="picker-btn" id="pickerBtn">
+        🎰 Spin The Wheel
+      </button>
+      <div class="picker-result" id="pickerResult"></div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews-section">
+      <h2 class="section-title pop-text">Reviews</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-quote">"10/10 would chonk again"</div>
+          <div class="review-source">— Nyantendo Life</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-quote">"he do be tappin'"</div>
+          <div class="review-source">— The Purrge</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-quote">"oh lawd he comin"</div>
+          <div class="review-source">— Furbes</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section">
+      <h2 class="pop-text">OH LAWD<br>GET ONE</h2>
+      <p class="pop-text-sm">Free. Forever. No cap.</p>
+      <a href="chonk.dmg" class="download-btn" download>
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        Get Chonky
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p class="pop-text-sm">
+        made with love by good bois
+        <a href="https://github.com">github</a>
+        <a href="https://twitter.com">twitter</a>
+      </p>
+    </footer>
+  </main>
+
+  <script>
+    const SUPABASE_URL = 'https://vcwrdvmjkckhevehpyox.supabase.co/storage/v1/object/public/skins';
+    const CAT_SIZE = 130;
+
+    // All skins
+    const allSkins = [
+      { id: 'standard-cat', name: 'Classic' },
+      { id: 'robot_cat', name: 'Robo' },
+      { id: 'Samurai_cat_01', name: 'Samurai' },
+      { id: 'cowboy_cat02', name: 'Yeehaw' },
+      { id: 'sushi_cat_01', name: 'Sushi' },
+      { id: 'Sphinx', name: 'Sphinx' },
+      { id: 'scottish_fold', name: 'Smol' },
+      { id: 'Mustache-cat', name: 'Fancy' },
+      { id: 'white_space_cat', name: 'Ghost' },
+      { id: 'hat_beanie', name: 'Cozy' },
+      { id: 'hat_cap_forward', name: 'Fresh' },
+      { id: 'hat_cap_backward', name: 'Chill' },
+      { id: 'hat_bow', name: 'Cute' },
+      { id: 'hat_party', name: 'Party' },
+      { id: 'hat_bucket', name: 'Bucket' },
+      { id: 'hat_beret', name: 'Artist' },
+      { id: 'hat_headband', name: 'Sporty' },
+      { id: 'hat_visor', name: 'Golf Dad' },
+      { id: 'hat_earmuffs', name: 'Toasty' },
+      { id: 'glasses_round', name: 'Wise' },
+      { id: 'glasses_aviator', name: 'Cool' },
+      { id: 'glasses_cateye', name: 'Sassy' },
+      { id: 'glasses_thick', name: 'Nerd' },
+      { id: 'glasses_tiny_sun', name: 'Vibes' },
+      { id: 'glasses_monocle', name: 'Fancy' },
+      { id: 'glasses_reading', name: 'Smart' },
+      { id: 'glasses_wire', name: 'Prof' },
+      { id: 'glasses_square', name: 'CEO' },
+      { id: 'glasses_clear', name: 'Trendy' },
+      { id: 'food_donut', name: 'Donut' },
+      { id: 'food_cookie', name: 'Cookie' },
+      { id: 'food_banana', name: 'Nana' },
+      { id: 'food_fish', name: 'Fishy' },
+      { id: 'food_bread', name: 'Loaf' },
+      { id: 'food_apple', name: 'Apple' }
+    ];
+
+    const allSkinsForGrid = allSkins.map(s => s.id);
+
+    // ========== BONK COUNTER ==========
+    let bonkCount = 0;
+    const bonkCountEl = document.getElementById('bonkCount');
+
+    function incrementBonk(amount = 1) {
+      bonkCount += amount;
+      bonkCountEl.textContent = bonkCount;
+      bonkCountEl.style.transform = 'scale(1.3)';
+      setTimeout(() => bonkCountEl.style.transform = 'scale(1)', 100);
+    }
+
+    // ========== CAT GRID ==========
+    let gridInfo = { cols: 0, rows: 0 };
+
+    function createCatGrid() {
+      const grid = document.getElementById('catGrid');
+      const cols = Math.ceil(window.innerWidth / CAT_SIZE) + 1;
+      const rows = Math.ceil(window.innerHeight / CAT_SIZE) + 1;
+
+      grid.innerHTML = '';
+      grid.style.gridTemplateColumns = `repeat(${cols}, ${CAT_SIZE}px)`;
+      grid.style.gridTemplateRows = `repeat(${rows}, ${CAT_SIZE}px)`;
+
+      const totalCats = cols * rows;
+
+      for (let i = 0; i < totalCats; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'cat-cell';
+        cell.dataset.col = i % cols;
+        cell.dataset.row = Math.floor(i / cols);
+
+        const img = document.createElement('img');
+        const randomSkin = allSkinsForGrid[Math.floor(Math.random() * allSkinsForGrid.length)];
+        cell.dataset.skin = randomSkin; // Store skin ID for tap animations
+        img.src = `${SUPABASE_URL}/${randomSkin}/idle.png`;
+        img.loading = 'lazy';
+
+        cell.appendChild(img);
+        grid.appendChild(cell);
+      }
+
+      gridInfo = { cols, rows };
+    }
+
+    createCatGrid();
+    window.addEventListener('resize', createCatGrid);
+
+    // ========== KEYBOARD VISUAL ==========
+    const keys = document.querySelectorAll('.key');
+    const keyMap = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
+
+    // ========== KEYBOARD - RIPPLE ==========
+    document.addEventListener('keydown', (e) => {
+      if (['Shift', 'Control', 'Alt', 'Meta'].includes(e.key)) return;
+      triggerTap();
+      incrementBonk();
+
+      // Update type prompt
+      const prompt = document.getElementById('typePrompt');
+      const messages = ['YESSS!', 'OH LAWD!', 'HE TAPPIN!', 'BONK!', 'CHONKY!', 'GOOD BOI!'];
+      prompt.textContent = messages[Math.floor(Math.random() * messages.length)];
+      setTimeout(() => prompt.textContent = '👆 TYPE SOMETHING!', 1000);
+
+      // Highlight random key
+      const keyIndex = Math.floor(Math.random() * keys.length);
+      keys[keyIndex].classList.add('active');
+      setTimeout(() => keys[keyIndex].classList.remove('active'), 150);
+    });
+
+    function triggerTap() {
+      const cells = document.querySelectorAll('.cat-cell');
+
+      cells.forEach(cell => {
+        // Only ~50% of cats tap each time, randomly selected
+        if (Math.random() > 0.5) return;
+
+        const skin = cell.dataset.skin;
+        const img = cell.querySelector('img');
+
+        cell.classList.add('tapping');
+        // Randomly pick left or right tap using stored skin ID
+        const tapType = Math.random() > 0.5 ? 'tap_left' : 'tap_right';
+        img.src = `${SUPABASE_URL}/${skin}/${tapType}.png`;
+
+        setTimeout(() => {
+          cell.classList.remove('tapping');
+          img.src = `${SUPABASE_URL}/${skin}/idle.png`;
+        }, 150);
+      });
+    }
+
+    // ========== CLICK - LOCAL BONK ==========
+    document.addEventListener('click', (e) => {
+      const cells = document.querySelectorAll('.cat-cell');
+      let bonked = false;
+
+      cells.forEach(cell => {
+        const rect = cell.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const distance = Math.sqrt(Math.pow(e.clientX - cx, 2) + Math.pow(e.clientY - cy, 2));
+
+        if (distance < 180) {
+          if (!bonked) {
+            incrementBonk();
+            bonked = true;
+          }
+          const skin = cell.dataset.skin;
+          const img = cell.querySelector('img');
+
+          setTimeout(() => {
+            cell.classList.add('bonking');
+            img.src = `${SUPABASE_URL}/${skin}/tap_both.png`;
+
+            setTimeout(() => {
+              cell.classList.remove('bonking');
+              img.src = `${SUPABASE_URL}/${skin}/idle.png`;
+            }, 300);
+          }, distance * 1.5);
+        }
+      });
+    });
+
+    // ========== RANDOM PICKER ==========
+    const pickerBtn = document.getElementById('pickerBtn');
+    const pickerResult = document.getElementById('pickerResult');
+    const pickerDisplay = document.getElementById('pickerDisplay');
+
+    pickerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      pickerBtn.classList.add('spinning');
+      pickerResult.textContent = '🎰 Spinning...';
+      pickerDisplay.classList.remove('has-result');
+
+      // Spin animation
+      let spins = 0;
+      const maxSpins = 20;
+      const spinInterval = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * allSkins.length);
+        const randomSkin = allSkins[randomIndex];
+        pickerResult.textContent = randomSkin.name;
+        pickerDisplay.innerHTML = `<img src="${SUPABASE_URL}/${randomSkin.id}/idle.png" alt="${randomSkin.name}">`;
+        spins++;
+
+        if (spins >= maxSpins) {
+          clearInterval(spinInterval);
+          pickerBtn.classList.remove('spinning');
+
+          // Final selection
+          const finalIndex = Math.floor(Math.random() * allSkins.length);
+          const finalSkin = allSkins[finalIndex];
+          pickerResult.textContent = `✨ ${finalSkin.name.toUpperCase()} ✨`;
+          pickerDisplay.innerHTML = `<img src="${SUPABASE_URL}/${finalSkin.id}/tap_both.png" alt="${finalSkin.name}">`;
+          pickerDisplay.classList.add('has-result');
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>
