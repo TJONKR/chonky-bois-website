@@ -618,7 +618,7 @@
     <!-- Random Picker -->
     <section class="picker-section" id="picker">
       <h2 class="section-title pop-text">Can't Decide?</h2>
-      <p class="section-subtitle pop-text-sm">31 flavors of chonk. spin for yours.</p>
+      <p class="section-subtitle pop-text-sm">68 flavors of chonk. spin for yours.</p>
       <div class="picker-display" id="pickerDisplay">
         <span class="question">?</span>
       </div>
@@ -676,16 +676,21 @@
     const SUPABASE_URL = 'https://vcwrdvmjkckhevehpyox.supabase.co/storage/v1/object/public/skins';
     const CAT_SIZE = 130;
 
-    // All skins
+    // All skins - 68 flavors of chonk!
     const allSkins = [
+      // Classic Characters
       { id: 'standard-cat', name: 'Classic' },
       { id: 'robot_cat', name: 'Robo' },
       { id: 'Samurai_cat_01', name: 'Samurai' },
       { id: 'sushi_cat_01', name: 'Sushi' },
       { id: 'Sphinx', name: 'Sphinx' },
       { id: 'scottish_fold', name: 'Smol' },
-      { id: 'Mustache-cat', name: 'Fancy' },
+      { id: 'Mustache-cat', name: 'Dapper' },
       { id: 'white_space_cat', name: 'Ghost' },
+      { id: 'Ninja_cat01', name: 'Ninja' },
+      { id: 'Goku_cat', name: 'Goku' },
+      { id: 'ID', name: 'Badge' },
+      // Hats
       { id: 'hat_beanie', name: 'Cozy' },
       { id: 'hat_cap_backward', name: 'Chill' },
       { id: 'hat_bow', name: 'Cute' },
@@ -695,6 +700,7 @@
       { id: 'hat_headband', name: 'Sporty' },
       { id: 'hat_visor', name: 'Golf Dad' },
       { id: 'hat_earmuffs', name: 'Toasty' },
+      // Glasses
       { id: 'glasses_round', name: 'Wise' },
       { id: 'glasses_cateye', name: 'Sassy' },
       { id: 'glasses_thick', name: 'Nerd' },
@@ -704,11 +710,52 @@
       { id: 'glasses_wire', name: 'Prof' },
       { id: 'glasses_square', name: 'CEO' },
       { id: 'glasses_clear', name: 'Trendy' },
+      // Food
       { id: 'food_donut', name: 'Donut' },
       { id: 'food_banana', name: 'Nana' },
       { id: 'food_fish', name: 'Fishy' },
       { id: 'food_bread', name: 'Loaf' },
-      { id: 'food_apple', name: 'Apple' }
+      { id: 'food_apple', name: 'Apple' },
+      // Legendary Skins
+      { id: 'legend_golden', name: 'Golden' },
+      { id: 'legend_diamond', name: 'Diamond' },
+      { id: 'legend_rainbow', name: 'Rainbow' },
+      { id: 'legend_galaxy', name: 'Galaxy' },
+      { id: 'legend_holo', name: 'Holo' },
+      { id: 'legend_glitch', name: 'Glitch' },
+      { id: 'legend_invisible', name: 'Stealth' },
+      { id: 'legend_king', name: 'King' },
+      { id: 'legend_mecha', name: 'Mecha' },
+      { id: 'legend_car', name: 'Speed' },
+      // Themed
+      { id: 'themed_witch', name: 'Witch' },
+      { id: 'themed_vampire', name: 'Vampire' },
+      { id: 'themed_mummy', name: 'Mummy' },
+      { id: 'themed_robot', name: 'Android' },
+      { id: 'themed_cyber', name: 'Cyber' },
+      // Wings
+      { id: 'wings_angel', name: 'Angel' },
+      { id: 'wings_devil', name: 'Devil' },
+      { id: 'wings_bat', name: 'Bat' },
+      { id: 'wings_fairy', name: 'Fairy' },
+      { id: 'wings_bee', name: 'Bee' },
+      // Cursed
+      { id: 'cursed_longcat', name: 'Longcat' },
+      { id: 'cursed_hyperchonk', name: 'MEGA' },
+      { id: 'cursed_liquid', name: 'Liquid' },
+      { id: 'cursed_loaf', name: 'Loaf Mode' },
+      { id: 'cursed_void', name: 'Void' },
+      // Animated Effects
+      { id: 'anim_sparkle', name: 'Sparkle' },
+      { id: 'anim_hearts', name: 'Hearts' },
+      { id: 'anim_planets', name: 'Planets' },
+      { id: 'anim_fire', name: 'Fire' },
+      { id: 'anim_snow', name: 'Snow' },
+      // Gaming
+      { id: 'gaming_sword', name: 'Warrior' },
+      { id: 'gaming_health', name: 'Healer' },
+      { id: 'gaming_achievement', name: 'Trophy' },
+      { id: 'gaming_lag', name: 'Lag' }
     ];
 
     const allSkinsForGrid = allSkins.map(s => s.id);
