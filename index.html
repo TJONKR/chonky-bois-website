@@ -252,6 +252,257 @@
       transform: translateY(-4px) rotate(2deg);
     }
 
+    /* ========== EMAIL FORM ========== */
+    .email-form {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .email-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      font-family: 'Space Mono', monospace;
+      background: rgba(0,0,0,0.8);
+      border: 3px solid rgba(255,255,255,0.4);
+      border-radius: 100px;
+      color: #fff;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .email-input:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(255, 221, 0, 0.2);
+    }
+
+    .email-input::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #000;
+      background: var(--yellow);
+      border: 3px solid #000;
+      border-radius: 100px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s ease;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-4px) rotate(-2deg);
+      box-shadow: 6px 6px 0 #000;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .submit-btn .spinner {
+      width: 18px;
+      height: 18px;
+      border: 3px solid rgba(0,0,0,0.2);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .form-message {
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.95rem;
+    }
+
+    .form-message.success {
+      color: var(--green);
+    }
+
+    .form-message.error {
+      color: var(--accent);
+    }
+
+    .form-hint {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 1rem;
+    }
+
+    /* ========== MILESTONE PROGRESS ========== */
+    .milestone-progress {
+      position: fixed;
+      top: 5.5rem;
+      right: 1.5rem;
+      background: rgba(0,0,0,0.9);
+      border: 2px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      z-index: 99;
+      max-width: 180px;
+    }
+
+    .milestone-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.4rem;
+    }
+
+    .milestone-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .milestone-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--yellow), var(--green));
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .milestone-text {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--cyan);
+      margin-top: 0.4rem;
+    }
+
+    /* ========== CELEBRATION MODAL ========== */
+    .celebration-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .celebration-overlay.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .celebration-modal {
+      background: #111;
+      border: 4px solid var(--yellow);
+      border-radius: 24px;
+      padding: 3rem;
+      text-align: center;
+      max-width: 400px;
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .celebration-emoji {
+      font-size: 5rem;
+      animation: bounce 0.6s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .celebration-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--yellow);
+      margin: 1rem 0 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .celebration-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.5rem;
+    }
+
+    .celebration-code {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: #000;
+      border: 3px solid var(--green);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .celebration-code:hover {
+      background: var(--green);
+      color: #000;
+    }
+
+    .celebration-hint {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 1rem;
+    }
+
+    .celebration-close {
+      margin-top: 1.5rem;
+      padding: 0.75rem 2rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 100px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Syne', sans-serif;
+    }
+
+    .celebration-close:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .milestone-progress {
+        top: auto;
+        bottom: 4.5rem;
+        right: 1rem;
+      }
+    }
+
     /* ========== BONK COUNTER ========== */
     .bonk-counter {
       position: fixed;
@@ -576,6 +827,27 @@
     <div class="label">Bonks</div>
   </div>
 
+  <!-- Milestone Progress -->
+  <div class="milestone-progress" id="milestoneProgress">
+    <div class="milestone-label">Next reward</div>
+    <div class="milestone-bar">
+      <div class="milestone-fill" id="milestoneFill" style="width: 0%"></div>
+    </div>
+    <div class="milestone-text" id="milestoneText">0 / 1,000</div>
+  </div>
+
+  <!-- Celebration Modal -->
+  <div class="celebration-overlay" id="celebrationOverlay">
+    <div class="celebration-modal">
+      <div class="celebration-emoji" id="celebrationEmoji"></div>
+      <h2 class="celebration-title" id="celebrationTitle"></h2>
+      <p class="celebration-subtitle" id="celebrationSubtitle"></p>
+      <div class="celebration-code" id="celebrationCode" onclick="copyCode()"></div>
+      <p class="celebration-hint">Click to copy // Redeem in app</p>
+      <button class="celebration-close" onclick="closeCelebration()">Nice!</button>
+    </div>
+  </div>
+
   <main class="content">
     <!-- Hero -->
     <section class="hero">
@@ -585,17 +857,17 @@
         Absolute units. Maximum chonk. Desktop domination.
         <span>// oh lawd, they tappin'</span>
       </p>
-      <div class="cta-group">
-        <a href="chonk.dmg" class="download-btn" download>
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-          </svg>
-          Get Chonky
-        </a>
-        <a href="#picker" class="btn-secondary">
-          Pick a boi
-        </a>
-      </div>
+      <form class="email-form" id="heroForm">
+        <input type="email" class="email-input" placeholder="your@email.com" required>
+        <button type="submit" class="submit-btn">
+          <span class="btn-text">Get Early Access</span>
+        </button>
+        <div class="form-message" id="heroMessage"></div>
+      </form>
+      <p class="form-hint pop-text-sm">We'll send you a download link // macOS only</p>
+      <a href="#picker" class="btn-secondary" style="margin-top: 1.5rem;">
+        Pick a boi
+      </a>
     </section>
 
     <!-- Type CTA -->
@@ -654,12 +926,13 @@
     <section class="cta-section">
       <h2 class="pop-text">OH LAWD<br>GET ONE</h2>
       <p class="pop-text-sm">Free. Forever. No cap.</p>
-      <a href="chonk.dmg" class="download-btn" download>
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-        </svg>
-        Get Chonky
-      </a>
+      <form class="email-form" id="ctaForm">
+        <input type="email" class="email-input" placeholder="your@email.com" required>
+        <button type="submit" class="submit-btn">
+          <span class="btn-text">Get Early Access</span>
+        </button>
+        <div class="form-message" id="ctaMessage"></div>
+      </form>
     </section>
 
     <!-- Footer -->
@@ -760,15 +1033,121 @@
 
     const allSkinsForGrid = allSkins.map(s => s.id);
 
+    // ========== MILESTONES ==========
+    const MILESTONES = [
+      { bonks: 1000, tier: 1, emoji: '🎉', title: 'TIER 1 UNLOCKED!', subtitle: 'You earned an exclusive skin!' },
+      { bonks: 10000, tier: 2, emoji: '🔥', title: 'TIER 2 UNLOCKED!', subtitle: 'OH LAWD, a rare skin!' },
+      { bonks: 100000, tier: 3, emoji: '👑', title: 'TIER 3 UNLOCKED!', subtitle: 'LEGENDARY CHONK ACHIEVED!' }
+    ];
+
     // ========== BONK COUNTER ==========
-    let bonkCount = 0;
+    // Load from localStorage
+    let bonkCount = parseInt(localStorage.getItem('chonkyBonks') || '0');
+    let claimedMilestones = JSON.parse(localStorage.getItem('chonkyMilestones') || '[]');
+
     const bonkCountEl = document.getElementById('bonkCount');
+    const milestoneFill = document.getElementById('milestoneFill');
+    const milestoneText = document.getElementById('milestoneText');
+    const milestoneProgress = document.getElementById('milestoneProgress');
+
+    // Initialize display
+    bonkCountEl.textContent = bonkCount.toLocaleString();
+    updateMilestoneProgress();
+
+    function getNextMilestone() {
+      for (const m of MILESTONES) {
+        if (!claimedMilestones.includes(m.tier)) {
+          return m;
+        }
+      }
+      return null; // All milestones claimed
+    }
+
+    function updateMilestoneProgress() {
+      const next = getNextMilestone();
+      if (!next) {
+        milestoneProgress.style.display = 'none';
+        return;
+      }
+
+      const prevBonks = MILESTONES.find(m => m.tier === next.tier - 1)?.bonks || 0;
+      const progress = Math.min(100, ((bonkCount - prevBonks) / (next.bonks - prevBonks)) * 100);
+
+      milestoneFill.style.width = `${progress}%`;
+      milestoneText.textContent = `${bonkCount.toLocaleString()} / ${next.bonks.toLocaleString()}`;
+    }
 
     function incrementBonk(amount = 1) {
+      const prevCount = bonkCount;
       bonkCount += amount;
-      bonkCountEl.textContent = bonkCount;
+
+      // Save to localStorage
+      localStorage.setItem('chonkyBonks', bonkCount.toString());
+
+      bonkCountEl.textContent = bonkCount.toLocaleString();
       bonkCountEl.style.transform = 'scale(1.3)';
       setTimeout(() => bonkCountEl.style.transform = 'scale(1)', 100);
+
+      // Update progress
+      updateMilestoneProgress();
+
+      // Check for milestone
+      for (const m of MILESTONES) {
+        if (prevCount < m.bonks && bonkCount >= m.bonks && !claimedMilestones.includes(m.tier)) {
+          triggerMilestone(m);
+          break;
+        }
+      }
+    }
+
+    async function triggerMilestone(milestone) {
+      // Show celebration
+      const overlay = document.getElementById('celebrationOverlay');
+      document.getElementById('celebrationEmoji').textContent = milestone.emoji;
+      document.getElementById('celebrationTitle').textContent = milestone.title;
+      document.getElementById('celebrationSubtitle').textContent = milestone.subtitle;
+      document.getElementById('celebrationCode').textContent = 'Generating...';
+      overlay.classList.add('active');
+
+      // Request code from edge function
+      try {
+        const response = await fetch('https://vcwrdvmjkckhevehpyox.supabase.co/functions/v1/generate-bonk-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tier: milestone.tier })
+        });
+
+        const data = await response.json();
+
+        if (data.code) {
+          document.getElementById('celebrationCode').textContent = data.code;
+
+          // Mark as claimed
+          claimedMilestones.push(milestone.tier);
+          localStorage.setItem('chonkyMilestones', JSON.stringify(claimedMilestones));
+          updateMilestoneProgress();
+        } else {
+          document.getElementById('celebrationCode').textContent = 'Error - try again';
+        }
+      } catch (error) {
+        console.error('Failed to generate code:', error);
+        document.getElementById('celebrationCode').textContent = 'Error - try again';
+      }
+    }
+
+    function copyCode() {
+      const code = document.getElementById('celebrationCode').textContent;
+      if (code && !code.includes('...') && !code.includes('Error')) {
+        navigator.clipboard.writeText(code);
+        document.getElementById('celebrationCode').textContent = 'Copied!';
+        setTimeout(() => {
+          document.getElementById('celebrationCode').textContent = code;
+        }, 1500);
+      }
+    }
+
+    function closeCelebration() {
+      document.getElementById('celebrationOverlay').classList.remove('active');
     }
 
     // ========== CAT GRID ==========
@@ -917,6 +1296,66 @@
         }
       }, 100);
     });
+
+    // ========== EMAIL FORM SUBMISSION ==========
+    const EDGE_FUNCTION_URL = `${SUPABASE_URL.replace('/storage/v1/object/public/skins', '')}/functions/v1/send-download-link`;
+
+    function setupEmailForm(formId, messageId) {
+      const form = document.getElementById(formId);
+      const message = document.getElementById(messageId);
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const emailInput = form.querySelector('.email-input');
+        const submitBtn = form.querySelector('.submit-btn');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const email = emailInput.value.trim();
+
+        // Validate
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          message.textContent = 'Please enter a valid email';
+          message.className = 'form-message error';
+          return;
+        }
+
+        // Loading state
+        submitBtn.disabled = true;
+        btnText.innerHTML = '<div class="spinner"></div>';
+        message.textContent = '';
+        message.className = 'form-message';
+
+        try {
+          const response = await fetch('https://vcwrdvmjkckhevehpyox.supabase.co/functions/v1/send-download-link', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.success) {
+            message.textContent = '✓ Check your inbox for the download link!';
+            message.className = 'form-message success';
+            emailInput.value = '';
+          } else {
+            message.textContent = data.error || 'Something went wrong. Try again.';
+            message.className = 'form-message error';
+          }
+        } catch (error) {
+          console.error('Form error:', error);
+          message.textContent = 'Network error. Please try again.';
+          message.className = 'form-message error';
+        } finally {
+          submitBtn.disabled = false;
+          btnText.textContent = 'Get Early Access';
+        }
+      });
+    }
+
+    setupEmailForm('heroForm', 'heroMessage');
+    setupEmailForm('ctaForm', 'ctaMessage');
   </script>
 </body>
 </html>
