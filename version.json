@@ -1,5 +1,5 @@
 {
-  "version": "0.31",
+  "version": "0.32",
   "downloadUrl": "https://chonkybois.com",
-  "releaseNotes": "Bug fixes and improvements"
+  "releaseNotes": "Added automatic update notifications"
 }
